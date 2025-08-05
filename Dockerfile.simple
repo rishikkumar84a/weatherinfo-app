@@ -1,0 +1,17 @@
+# Render.com native Java build
+FROM openjdk:11
+
+# Set working directory
+WORKDIR /app
+
+# Install Maven
+RUN apt-get update && apt-get install -y maven
+
+# Copy project files
+COPY . .
+
+# Build the project
+RUN mvn clean package -DskipTests
+
+# Start the application
+CMD java -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
