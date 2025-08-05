@@ -1,0 +1,19 @@
+# Render.com deployment configuration
+# This file tells Render how to build and run your Java application
+
+# Build configuration
+build:
+  commands:
+    - mvn clean package
+
+# Runtime configuration  
+runtime:
+  java_version: 11
+
+# Web service configuration
+web:
+  start_command: java -Dserver.port=$PORT -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
+  
+# Environment
+env:
+  NODE_ENV: production
